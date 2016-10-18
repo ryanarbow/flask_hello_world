@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 #get access to environment variables from Cloud9
 from os import environ
 
@@ -20,16 +20,18 @@ def say_hi():
 
 #Return HTML example
 def hello_person(name):
-    html = """
-        <h1>
-            Hello {}!
-        </h1>
-        <p>
-            Here's a picture of a kitten.  Awww...
-        </p>
-        <img src="http://placekitten.com/g/200/300">
-    """
-    return html.format(name.title())
+    return render_template('template.html', my_string="Hello {}!".format(name.title()))
+    
+    #html = """
+    #    <h1>
+    #        Hello {}!
+    #    </h1>
+    #    <p>
+    #        Here's a picture of a kitten.  Awww...
+    #    </p>
+    #    <img src="http://placekitten.com/g/200/300">
+    #"""
+    #return html.format(name.title())
 
 @app.route("/jedi/<first>/<last>")
 def hi_jedi(first,last):
